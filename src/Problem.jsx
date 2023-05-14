@@ -1,51 +1,53 @@
 import "./problem.css";
-import {Link, useLocation} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import {useState} from "react";
 
 const launguages = [
     {
         key: 1,
         language: "C++",
-        "code": "// start code\n#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, world!\";\n    return 0;\n}"
+        code: "// start code\n#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, world!\";\n    return 0;\n}"
     },
     {
         key: 2,
         language: "Python",
-        "code": "# start code\nprint(\"Hello, world!\")"
+        code: "# start code\nprint(\"Hello, world!\")"
     },
     {
         key: 3,
         language: "Java",
-        "code": "// start code\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, world!\");\n    }\n}"
+        code: "// start code\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, world!\");\n    }\n}"
     },
     {
         key: 4,
         language: "C",
-        "code": "// start code\n#include <stdio.h>\n\nint main() {\n    printf(\"Hello, world!\\n\");\n    return 0;\n}"
+        code: "// start code\n#include <stdio.h>\n\nint main() {\n    printf(\"Hello, world!\\n\");\n    return 0;\n}"
     }
 ]
 
-function Problem(props) {
-    const [rows, cheakRows] = useState(35);
+function Problem() {
     const location = useLocation();
     const propsData = location.state;
     const [selectedOption, setSelectedOption] = useState('C++');
-    const [samplecode, setSampleCode] = useState("// start code\n#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello, world!\";\n    return 0;\n}")
-
-    const handleOptionChange = (event) => {
-        setSelectedOption(event.target.value);
+    const [samplecode, setSampleCode] = useState(launguages[0].code);
+    const [rownos, setRownos] = useState(launguages[0].code.split(/\r?\n/).length);
+    const handleOptionChange = (e) => {
+        setSelectedOption(e.target.value);
         launguages.map(lang => {
 
-            if (lang.language === event.target.value) {
-                return setSampleCode(lang.code);
+            if (lang.language === e.target.value) {
+                setSampleCode(lang.code);
+                setRownos(lang.code.split(/\r?\n/).length);
             }
 
         });
     }
 
 
-    function handletextchange() {
-        setSampleCode(event.target.value);
+    function handletextchange(e) {
+        setSampleCode(e.target.value);
+        setRownos(samplecode.split(/\r?\n/).length);
+        console.log(samplecode.split(/\r?\n/).length);
     }
 
     return (
@@ -89,8 +91,8 @@ function Problem(props) {
                         <br/><br/>
                         <div className="examples">
                             {
-                                propsData.examples.map(exam=>{
-                                   return (<div className="example-1 margin-to-problem">
+                                propsData.examples.map(exam => {
+                                    return (<div className="example-1 margin-to-problem">
                                         <div className="fw-bold" key={exam.key}>
                                             Example {exam.key}
                                         </div>
@@ -130,14 +132,19 @@ function Problem(props) {
 
                     </nav>
                     <div className="code">
-                        <div className="numbergrid">
+                        <div className="codeText">
+                            <div className="numbergrid">
+                                {[...Array(rownos).keys()].map((i) => (
+                                    <div key={i} align="center">{i}</div>
+                                ))}
+                            </div>
+                            <textarea className="Textarea" value={samplecode}
+                                      onChange={handletextchange} ></textarea>
                         </div>
-                        <textarea className="Textarea" rows={rows} value={samplecode}
-                                  onChange={handletextchange}></textarea>
+                        <button type="button" className="btn btn-primary to-end" onClick={() => {
+                        }}>Submit
+                        </button>
                     </div>
-                    <button type="button" className="btn btn-primary to-end" onClick={() => {
-                    }}>Submit
-                    </button>
 
                 </div>
             </div>

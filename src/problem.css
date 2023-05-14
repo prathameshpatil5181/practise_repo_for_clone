@@ -75,25 +75,39 @@ ol, ul {
 }
 .code{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     width : 100%;
+    height: 100%;
 }
-.Textarea{
-    flex: 1;
-    border: none;
-    outline: none;
-    height: auto;
-    resize: none;
-    overflow-y: scroll;
+.codeText{
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+    width: 100%;
+    overflow: scroll;
 }
+.numbergrid{
+    padding:2px;
+    display: block;
+}
+
+
 .toscroll{
     overflow-y: scroll;
 }
 .numbergrid{
     width:5%;
+    height: 100%;
+    overflow: visible;
+}
+.Textarea{
+    flex: 1;
+    border: none;
+    outline: none;
+    resize: none;
 }
 .to-end{
-    margin-left: 90%;
+    width:5vw;
 }
 .dropdown{
     border: none;
@@ -114,7 +128,6 @@ ol, ul {
 .problem-statement{
     margin-top: 4vh;
 }
-
 
 
 

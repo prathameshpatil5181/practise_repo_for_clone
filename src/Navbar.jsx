@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./App.css";
 function Navbar(){
     return(
@@ -14,17 +14,17 @@ function Navbar(){
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
                             <li className="nav-item">
-                                <Link className="nav-Link active" aria-current="page" to="/Problems">Home</Link>
+                                <Link className="nav-Link active" aria-current="page" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-Link" to="/Problems">Problems</Link>
                             </li>
-                            {/*<li className="nav-item">*/}
-                            {/*    <Link className="nav-Link" to="/Contest">Contest</Link>*/}
-                            {/*</li>*/}
-                            {/*<li className="nav-item">*/}
-                            {/*    <Link className="nav-Link" to="/">Discuss</Link>*/}
-                            {/*</li>*/}
+                            <li className="nav-item">
+                                <Link className="nav-Link" to="/Contest">Contest</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-Link" to="editor">Discuss</Link>
+                            </li>
                         </ul>
                         <form className="d-flex" role="search">
                             <Link to="/login"><button className="btn btn-outline-success" type="submit">Login</button></Link>
